@@ -1,0 +1,121 @@
+$min-cell-height: 60px;
+$spacing: 5px;
+$border-width: 1px;
+$item-font-size: 32px;
+
+.cdk-drag {
+  cursor: move;
+}
+
+.cdk-drag-preview {
+  opacity: 0.5;
+}
+
+// Containers ====================
+
+.flex {
+  display: flex;
+  width: 600px;
+  align-items: flex-start;
+  margin-top: 4 * $spacing;
+}
+
+.list {
+  flex-basis: 34%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 4 * $spacing;
+}
+
+.grid-container {
+  flex-basis: 66%;
+  overflow: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-row-gap: 2 * $spacing;
+}
+
+// Cells =========================
+
+.orig-assign-cell {
+  min-height: $min-cell-height;
+  grid-column: 1;
+  display: flex;
+  align-items: center;
+  padding: $spacing;
+  font-size: $item-font-size;
+  color: blue;
+}
+
+.new-assign-cell {
+  grid-column: 2;
+  display: block;
+  margin-right: 2 * $spacing;
+}
+
+.avail-cell {
+  min-height: $min-cell-height;
+  grid-column: 3;
+  grid-row-start: 2;
+  display: block;
+  overflow: auto;
+}
+
+// Headers =======================
+
+.hdr {
+  border-bottom-style: solid;
+  border-bottom-width: $border-width;
+  border-top-style: solid;
+  border-top-width: $border-width;
+  font-weight: bold;
+  padding: $spacing;
+}
+
+.avail-hdr {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.orig-assign-hdr {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.new-assign-hdr {
+  grid-column: 2;
+  grid-row: 1;
+  margin-right: 2 * $spacing;
+}
+
+// Draggable Items ===============
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: $spacing;
+  background-color: white;
+}
+
+.avail-item {
+  min-height: $min-cell-height;
+  border-style: solid;
+  border-width: 0.5 * $border-width;
+  font-size: $item-font-size;
+}
+
+.new-assign-item {
+  min-height: $min-cell-height;
+  font-weight: bold;
+  font-size: $item-font-size;
+  color: red;
+}
+
+.placeholder {
+  min-height: $min-cell-height - (2 * $border-width);
+  border-style: dashed;
+  border-width: $border-width;
+}

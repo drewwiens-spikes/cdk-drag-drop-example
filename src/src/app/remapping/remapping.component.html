@@ -1,0 +1,57 @@
+<div class="flex">
+  <div class="grid-container">
+    <div class="grid">
+
+      <!-- Original Assignment column: -->
+      <div class="hdr orig-assign-hdr">Original Assignment</div>
+      <div
+        *ngFor="let oa of originalAssignments; index as i"
+        class="orig-assign-cell"
+        [style.grid-row]="i + 2"
+      >{{oa.displayName}}</div>
+
+      <!-- New Assignment column: -->
+      <div class="hdr new-assign-hdr">New Assignment</div>
+      <cdk-drop
+        *ngFor="let oa of originalAssignments; index as i"
+        #newAssignmentDropsite
+        (dropped)="drop($event)"
+        (entered)="setShowPlaceholder(i, false)"
+        (exited)="setShowPlaceholder(i, true)"
+        [connectedTo]="connections[i]"
+        [data]="newAssignments[i]"
+        [style.grid-row]="i + 2"
+        class="new-assign-cell"
+      >
+        <div
+          *ngFor="let newAssignment of newAssignments[i]"
+          cdkDrag
+          cdkDragHandle
+          class="item new-assign-item"
+        >{{newAssignment.displayName}}</div>
+        <div *ngIf="showPlaceholder[i]" class="item placeholder">Drag and drop here to assign</div>
+      </cdk-drop>
+
+    </div>
+  </div>
+  <div class="list">
+
+    <!-- Available column: -->
+    <div class="hdr avail-hdr">Available</div>
+    <cdk-drop
+      #availableDropsite
+      (dropped)="drop($event)"
+      [connectedTo]="availableConnections"
+      [data]="available"
+      class="avail-cell"
+    >
+      <div
+        *ngFor="let avail of available"
+        cdkDrag
+        cdkDragHandle
+        class="item avail-item"
+      >{{avail.displayName}}</div>
+    </cdk-drop>
+
+  </div>
+</div>

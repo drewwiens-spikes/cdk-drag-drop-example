@@ -1,0 +1,6 @@
+<app-remapping
+  [initialMapping]="initialMapping"
+  (mapping)="updateMapping($event)"
+></app-remapping>
+
+<pre>{{newMapping | json}}</pre>
